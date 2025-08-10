@@ -11,6 +11,6 @@ This repository provides essential guidelines and commands for effectively opera
 * User Management
 * File System Operations
 * Network Configuration
-* Troubleshooting Common Issues
+* Troubleshooting
 
 For detailed instructions and guides, please refer to the [wiki page](https://github.com/Gowtham-Mahendran/operation_linux/wiki).
