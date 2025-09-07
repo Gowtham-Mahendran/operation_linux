@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Easyroam config &#8212; Debian Linux Docs 1.0 documentation</title>
+    <title>First things First &#8212; Debian Linux Docs 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
@@ -14,8 +14,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Sphinx" href="Git.html" />
-    <link rel="prev" title="1. Fastfetch" href="Customization.html" />
+    <link rel="next" title="Customization" href="Customization.html" />
+    <link rel="prev" title="Getting Started" href="Home.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,7 +33,9 @@
 
           <div class="body" role="main">
             
-  <p>This document logs the steps taken to:</p>
+  <section id="first-things-first">
+<h1>First things First<a class="headerlink" href="#first-things-first" title="Link to this heading">¶</a></h1>
+<p>This document logs the steps taken to:</p>
 <ul class="simple">
 <li><p>Wifi (easyroam)</p></li>
 <li><p>Fix Debian package sources</p></li>
@@ -50,7 +52,7 @@
 </ul>
 <hr class="docutils" />
 <section id="easyroam-config">
-<h1>1. Easyroam config<a class="headerlink" href="#easyroam-config" title="Link to this heading">¶</a></h1>
+<h2>1. Easyroam config<a class="headerlink" href="#easyroam-config" title="Link to this heading">¶</a></h2>
 <p>The certificate is only valid for <strong>90 days</strong> and must be replaced after this period.</p>
 <p>To configure <strong>eduroam</strong> using a script, follow these steps:</p>
 <ol class="arabic">
@@ -211,7 +213,7 @@ openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$o
 </ol>
 </section>
 <section id="fixing-dvd-source">
-<h1>2. Fixing DVD Source<a class="headerlink" href="#fixing-dvd-source" title="Link to this heading">¶</a></h1>
+<h2>2. Fixing DVD Source<a class="headerlink" href="#fixing-dvd-source" title="Link to this heading">¶</a></h2>
 <p>After trying to install Thunderbird via <code class="docutils literal notranslate"><span class="pre">apt</span></code>, the system prompted for the installation DVD:</p>
 <p><em>Media change: please insert the disc labeled ‘Debian GNU/Linux 12.11.0 …’</em></p>
 <p>This means the system was still using the DVD as a source for packages.</p>
@@ -265,7 +267,7 @@ openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$o
 </ol>
 </section>
 <section id="installing-thunderbird">
-<h1>3. Installing Thunderbird<a class="headerlink" href="#installing-thunderbird" title="Link to this heading">¶</a></h1>
+<h2>3. Installing Thunderbird<a class="headerlink" href="#installing-thunderbird" title="Link to this heading">¶</a></h2>
 <p>Once the sources were fixed, Thunderbird could be installed normally:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">thunderbird</span> 
 </pre></div>
@@ -273,12 +275,12 @@ openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$o
 <p>This downloaded the package from online mirrors instead of prompting for the DVD.</p>
 </section>
 <section id="fullscreen">
-<h1>4. Fullscreen<a class="headerlink" href="#fullscreen" title="Link to this heading">¶</a></h1>
+<h2>4. Fullscreen<a class="headerlink" href="#fullscreen" title="Link to this heading">¶</a></h2>
 <p>To exit fullscreen mode in a graphical terminal window (like GNOME Terminal, Konsole, etc.):</p>
 <p>Press F11</p>
 </section>
 <section id="copy-paste-terminal-commands">
-<h1>5. Copy &amp; Paste terminal commands<a class="headerlink" href="#copy-paste-terminal-commands" title="Link to this heading">¶</a></h1>
+<h2>5. Copy &amp; Paste terminal commands<a class="headerlink" href="#copy-paste-terminal-commands" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="https://superuser.com/questions/357248/how-to-copy-the-terminal-output">How to copy the terminal output?</a></p>
 <p>you can copy-paste the selected text using</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ctrl</span> <span class="o">+</span> <span class="n">Shift</span> <span class="o">+</span> <span class="n">C</span>
@@ -287,7 +289,7 @@ openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$o
 </div>
 </section>
 <section id="default-desktop-environment">
-<h1>6. Default Desktop Environment<a class="headerlink" href="#default-desktop-environment" title="Link to this heading">¶</a></h1>
+<h2>6. Default Desktop Environment<a class="headerlink" href="#default-desktop-environment" title="Link to this heading">¶</a></h2>
 <p>Set other desktop environments as default (Gnome to KDE Plasma)</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">x</span><span class="o">-</span><span class="n">session</span><span class="o">-</span><span class="n">manager</span>
 </pre></div>
@@ -298,7 +300,7 @@ openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$o
 </div>
 </section>
 <section id="brave-browser">
-<h1>7. Brave Browser<a class="headerlink" href="#brave-browser" title="Link to this heading">¶</a></h1>
+<h2>7. Brave Browser<a class="headerlink" href="#brave-browser" title="Link to this heading">¶</a></h2>
 <p>Here is the linux <a class="reference external" href="https://brave.com/linux/">download</a> page of Brave browser</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="n">install</span> <span class="n">curl</span>
 <span class="n">curl</span> <span class="o">-</span><span class="n">fsS</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">brave</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">sh</span>
@@ -306,7 +308,7 @@ openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$o
 </div>
 </section>
 <section id="nvidia-driver">
-<h1>8. NVIDIA Driver<a class="headerlink" href="#nvidia-driver" title="Link to this heading">¶</a></h1>
+<h2>8. NVIDIA Driver<a class="headerlink" href="#nvidia-driver" title="Link to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="mf">0.259410</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">BIOS</span> <span class="n">Error</span> <span class="p">(</span><span class="n">bug</span><span class="p">):</span> <span class="n">Failure</span> <span class="n">creating</span> <span class="n">named</span> <span class="nb">object</span> <span class="p">[</span><span class="n">_SB</span><span class="o">.</span><span class="n">PCI0</span><span class="o">.</span><span class="n">GPP0</span><span class="o">.</span><span class="n">VGA</span><span class="p">],</span> <span class="n">AE_ALREADY_EXISTS</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">dswload2</span><span class="o">-</span><span class="mi">326</span><span class="p">)</span>
 <span class="p">[</span> <span class="mf">0.259421</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">Error</span><span class="p">:</span> <span class="n">AE_ALREADY_EXISTS</span><span class="p">,</span> <span class="n">During</span> <span class="n">name</span> <span class="n">lookup</span><span class="o">/</span><span class="n">catalog</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">psobject</span><span class="o">-</span><span class="mi">220</span><span class="p">)</span>
 <span class="p">[</span> <span class="mf">0.259492</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">BIOS</span> <span class="n">Error</span> <span class="p">(</span><span class="n">bug</span><span class="p">):</span> <span class="n">Failure</span> <span class="n">creating</span> <span class="n">named</span> <span class="nb">object</span> <span class="p">[</span><span class="n">_SB</span><span class="o">.</span><span class="n">PCI0</span><span class="o">.</span><span class="n">GPP0</span><span class="o">.</span><span class="n">HDAU</span><span class="p">],</span> <span class="n">AE_ALREADY_EXISTS</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">dswload2</span><span class="o">-</span><span class="mi">326</span><span class="p">)</span>
@@ -444,7 +446,7 @@ blacklist nouveau
 <p><code class="docutils literal notranslate"><span class="pre">reboot</span></code> once done. <strong><em>The blacklist error is still not solved.</em></strong></p>
 </section>
 <section id="changing-default-terminal">
-<h1>9. Changing Default Terminal<a class="headerlink" href="#changing-default-terminal" title="Link to this heading">¶</a></h1>
+<h2>9. Changing Default Terminal<a class="headerlink" href="#changing-default-terminal" title="Link to this heading">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">x</span><span class="o">-</span><span class="n">terminal</span><span class="o">-</span><span class="n">emulator</span>
 </pre></div>
 </div>
@@ -459,7 +461,7 @@ blacklist nouveau
 </div>
 </section>
 <section id="miniforge">
-<h1>10. Miniforge<a class="headerlink" href="#miniforge" title="Link to this heading">¶</a></h1>
+<h2>10. Miniforge<a class="headerlink" href="#miniforge" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Download conda-forge installer from the <a class="reference external" href="https://conda-forge.org/download/">website</a></p></li>
 <li><p>Go to the directory and run</p></li>
@@ -563,7 +565,7 @@ base                   /home/gowtham/miniforge3
 </div>
 </section>
 <section id="screenshot">
-<h1>11. Screenshot<a class="headerlink" href="#screenshot" title="Link to this heading">¶</a></h1>
+<h2>11. Screenshot<a class="headerlink" href="#screenshot" title="Link to this heading">¶</a></h2>
 <p>To take a screenshot, install</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="n">install</span> <span class="n">gnome</span><span class="o">-</span><span class="n">screenshot</span>
 </pre></div>
@@ -571,7 +573,7 @@ base                   /home/gowtham/miniforge3
 <p>launch screenshot app and see the shortcuts.</p>
 </section>
 <section id="external-monitor">
-<h1>12. External Monitor<a class="headerlink" href="#external-monitor" title="Link to this heading">¶</a></h1>
+<h2>12. External Monitor<a class="headerlink" href="#external-monitor" title="Link to this heading">¶</a></h2>
 <p>You can preview the current setup by just running:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrandr</span>
 </pre></div>
@@ -613,6 +615,7 @@ Edit your GRUB configuration:</p></li>
 </pre></div>
 </div>
 </section>
+</section>
 
 
           </div>
@@ -642,45 +645,38 @@ Edit your GRUB configuration:</p></li>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Coding.html">Coding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">First things First</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#easyroam-config">1. Easyroam config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fixing-dvd-source">2. Fixing DVD Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-thunderbird">3. Installing Thunderbird</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fullscreen">4. Fullscreen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#copy-paste-terminal-commands">5. Copy &amp; Paste terminal commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#default-desktop-environment">6. Default Desktop Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#brave-browser">7. Brave Browser</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nvidia-driver">8. NVIDIA Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changing-default-terminal">9. Changing Default Terminal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#miniforge">10. Miniforge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#screenshot">11. Screenshot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-monitor">12. External Monitor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Customization.html">Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Network drives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Trixie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">Tweaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html">User specific softwares</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html">Common Softwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html">1. Fastfetch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html#oh-my-zsh">2. Oh My Zsh</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html#thunderbird-html-signature">3. Thunderbird HTML Signature</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Easyroam config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#fixing-dvd-source">2. Fixing DVD Source</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#installing-thunderbird">3. Installing Thunderbird</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#fullscreen">4. Fullscreen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#copy-paste-terminal-commands">5. Copy &amp; Paste terminal commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#default-desktop-environment">6. Default Desktop Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#brave-browser">7. Brave Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#nvidia-driver">8. NVIDIA Driver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#changing-default-terminal">9. Changing Default Terminal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#miniforge">10. Miniforge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#screenshot">11. Screenshot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#external-monitor">12. External Monitor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Git.html">Sphinx</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html">1. Debian &amp; bootable drive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#bios-uefi-configuration">2. BIOS/UEFI Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#install-debian-12">3. Install Debian 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#login-manager-selection">4. Login Manager Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#switching-to-superuser">5. Switching to superuser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Mounting Network Drives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Trixie.html#vpn">VPN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">De-encrypt a pdf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tweaks.html#git">Git</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html">1. MATLAB installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#globalprotect-vpn">2. GlobalProtect VPN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#kicad-debian-backports">3. KiCAD - Debian Backports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Coding.html">Coding</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="Customization.html" title="previous chapter">1. Fastfetch</a></li>
-      <li>Next: <a href="Git.html" title="next chapter">Sphinx</a></li>
+      <li>Previous: <a href="Home.html" title="previous chapter">Getting Started</a></li>
+      <li>Next: <a href="Customization.html" title="next chapter">Customization</a></li>
   </ul></li>
 </ul>
 </div>

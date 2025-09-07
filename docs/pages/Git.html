@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Sphinx &#8212; Debian Linux Docs 1.0 documentation</title>
+    <title>Git &#8212; Debian Linux Docs 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
@@ -14,8 +14,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1. Debian &amp; bootable drive" href="Home.html" />
-    <link rel="prev" title="1. Easyroam config" href="First-things-First.html" />
+    <link rel="next" title="Network drives" href="Network-drives.html" />
+    <link rel="prev" title="Customization" href="Customization.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,9 +33,124 @@
 
           <div class="body" role="main">
             
-  <section id="sphinx">
-<h1>Sphinx<a class="headerlink" href="#sphinx" title="Link to this heading">¶</a></h1>
+  <section id="git">
+<h1>Git<a class="headerlink" href="#git" title="Link to this heading">¶</a></h1>
+<section id="sphinx">
+<h2>Sphinx<a class="headerlink" href="#sphinx" title="Link to this heading">¶</a></h2>
 <p>Sphinx <a class="reference external" href="https://sphinx-themes.org/">Themes</a></p>
+<p><a class="reference external" href="https://github.com/sphinx-doc/sphinx">Github</a></p>
+<p><a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx Docs</a></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">uv</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span>
+</pre></div>
+</div>
+<p><strong>Verify installation</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) gowtham@debian:~/Documents/Git/Github/operation_linux$ sphinx-build --version
+sphinx-build 8.2.3
+</pre></div>
+</div>
+<p><strong>To create documentation layout</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) gowtham@debian:~/Documents/Git/Github/operation_linux$ sphinx-quickstart docs
+Welcome to the Sphinx 8.2.3 quickstart utility.
+
+Please enter values for the following settings (just press Enter to
+accept a default value, if one is given in brackets).
+
+Selected root path: docs
+
+You have two options for placing the build directory for Sphinx output.
+Either, you use a directory &quot;_build&quot; within the root path, or you separate
+&quot;source&quot; and &quot;build&quot; directories within the root path.
+&gt; Separate source and build directories (y/n) [n]: y
+
+The project name will occur in several places in the built documentation.
+&gt; Project name: Debian Linux Docs
+&gt; Author name(s): Gowtham Mahendran
+&gt; Project release []: 1.0
+
+If the documents are to be written in a language other than English,
+you can select a language here by its language code. Sphinx will then
+translate text that it generates into that language.
+
+For a list of supported codes, see
+https://www.sphinx-doc.org/en/master/usage/configuration.html#confval-language.
+&gt; Project language [en]: 
+
+Creating file /home/gowtham/Documents/Git/Github/operation_linux/docs/source/conf.py.
+Creating file /home/gowtham/Documents/Git/Github/operation_linux/docs/source/index.rst.
+Creating file /home/gowtham/Documents/Git/Github/operation_linux/docs/Makefile.
+Creating file /home/gowtham/Documents/Git/Github/operation_linux/docs/make.bat.
+
+Finished: An initial directory structure has been created.
+
+You should now populate your master file /home/gowtham/Documents/Git/Github/operation_linux/docs/source/index.rst and create other documentation
+source files. Use the Makefile to build the docs, like so:
+   make builder
+where &quot;builder&quot; is one of the supported builders, e.g. html, latex or linkcheck.
+</pre></div>
+</div>
+<p><strong>Docs folder should be there</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) gowtham@debian:~/Documents/Git/Github/operation_linux$ ls
+docs  easyroam.sh  README.md
+</pre></div>
+</div>
+<p><strong>To build</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(.venv) gowtham@debian:~/Documents/Git/Github/operation_linux$ sphinx-build -M html docs/source/ docs/build/
+Running Sphinx v8.2.3
+loading translations [en]... done
+making output directory... done
+building [mo]: targets for 0 po files that are out of date
+writing output... 
+building [html]: targets for 1 source files that are out of date
+updating environment: [new config] 1 added, 0 changed, 0 removed
+reading sources... [100%] index
+looking for now-outdated files... none found
+pickling environment... done
+checking consistency... done
+preparing documents... done
+copying assets... 
+copying static files... 
+Writing evaluated template result to /home/gowtham/Documents/Git/Github/operation_linux/docs/build/html/_static/language_data.js
+Writing evaluated template result to /home/gowtham/Documents/Git/Github/operation_linux/docs/build/html/_static/basic.css
+Writing evaluated template result to /home/gowtham/Documents/Git/Github/operation_linux/docs/build/html/_static/documentation_options.js
+Writing evaluated template result to /home/gowtham/Documents/Git/Github/operation_linux/docs/build/html/_static/alabaster.css
+copying static files: done
+copying extra files... 
+copying extra files: done
+copying assets: done
+writing output... [100%] index
+generating indices... genindex done
+writing additional pages... search done
+dumping search index in English (code: en)... done
+dumping object inventory... done
+build succeeded.
+
+The HTML pages are in docs/build/html.
+</pre></div>
+</div>
+<p>I have moved the <code class="docutils literal notranslate"><span class="pre">docs</span></code> inside <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> because github can either deploy from <code class="docutils literal notranslate"><span class="pre">root</span></code> or <code class="docutils literal notranslate"><span class="pre">/docs</span></code>. I created a <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder in main dir and copied the contents of <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> to <code class="docutils literal notranslate"><span class="pre">docs</span></code>.</p>
+<p>We also need to add <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file inside <code class="docutils literal notranslate"><span class="pre">docs</span></code> so that the static files are served.</p>
+<p>Since I have written down all the docs in wiki as <code class="docutils literal notranslate"><span class="pre">markdown</span></code>, it is better to include a plugin that reads <code class="docutils literal notranslate"><span class="pre">.md</span></code> files. So install, <code class="docutils literal notranslate"><span class="pre">myst_parser</span></code>.</p>
+<p>Add the plugin to the conf.py file</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;myst_parser&quot;</span><span class="p">,]</span>
+
+<span class="n">source_suffix</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;.rst&quot;</span><span class="p">:</span> <span class="s2">&quot;restructuredtext&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;.md&quot;</span><span class="p">:</span> <span class="s2">&quot;markdown&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">index.rst</span></code>, include the code to read the pages,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
+   <span class="p">:</span><span class="n">maxdepth</span><span class="p">:</span> <span class="mi">2</span>
+   <span class="p">:</span><span class="n">caption</span><span class="p">:</span> <span class="n">Contents</span><span class="p">:</span>
+   <span class="p">:</span><span class="n">glob</span><span class="p">:</span>
+
+   <span class="n">pages</span><span class="o">/*</span>
+</pre></div>
+</div>
+<p>Create a folder called <code class="docutils literal notranslate"><span class="pre">pages</span></code> inside <code class="docutils literal notranslate"><span class="pre">sources</span></code> and copy paste all the <code class="docutils literal notranslate"><span class="pre">.md</span></code> files from <code class="docutils literal notranslate"><span class="pre">wiki</span></code>.</p>
+<p>Now run sphinx and copy all the files inside <code class="docutils literal notranslate"><span class="pre">build</span></code> to <code class="docutils literal notranslate"><span class="pre">docs</span></code> in the main dir. Add <code class="docutils literal notranslate"><span class="pre">.nojekyll</span></code> file inside <code class="docutils literal notranslate"><span class="pre">docs/</span></code> so that the static files are rendered.</p>
+</section>
 </section>
 
 
@@ -66,45 +181,27 @@
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Coding.html">Coding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html">First things First</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Customization.html">Customization</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx">Sphinx</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Network drives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Trixie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">Tweaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html">User specific softwares</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html">Common Softwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html">1. Fastfetch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html#oh-my-zsh">2. Oh My Zsh</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html#thunderbird-html-signature">3. Thunderbird HTML Signature</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html">1. Easyroam config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#fixing-dvd-source">2. Fixing DVD Source</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#installing-thunderbird">3. Installing Thunderbird</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#fullscreen">4. Fullscreen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#copy-paste-terminal-commands">5. Copy &amp; Paste terminal commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#default-desktop-environment">6. Default Desktop Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#brave-browser">7. Brave Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#nvidia-driver">8. NVIDIA Driver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#changing-default-terminal">9. Changing Default Terminal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#miniforge">10. Miniforge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#screenshot">11. Screenshot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#external-monitor">12. External Monitor</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html">1. Debian &amp; bootable drive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#bios-uefi-configuration">2. BIOS/UEFI Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#install-debian-12">3. Install Debian 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#login-manager-selection">4. Login Manager Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#switching-to-superuser">5. Switching to superuser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Mounting Network Drives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Trixie.html#vpn">VPN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">De-encrypt a pdf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tweaks.html#git">Git</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html">1. MATLAB installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#globalprotect-vpn">2. GlobalProtect VPN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#kicad-debian-backports">3. KiCAD - Debian Backports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Coding.html">Coding</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="First-things-First.html" title="previous chapter">1. Easyroam config</a></li>
-      <li>Next: <a href="Home.html" title="next chapter">1. Debian &amp; bootable drive</a></li>
+      <li>Previous: <a href="Customization.html" title="previous chapter">Customization</a></li>
+      <li>Next: <a href="Network-drives.html" title="next chapter">Network drives</a></li>
   </ul></li>
 </ul>
 </div>

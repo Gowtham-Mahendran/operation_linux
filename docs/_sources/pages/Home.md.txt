@@ -1,4 +1,6 @@
 
+# Getting Started
+
 This guide documents the full process of replacing Windows with Debian 12 on an HP laptop, including BIOS setup, offline driver installation, and EasyRoam setup.
 
 ---

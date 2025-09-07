@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. Debian &amp; bootable drive &#8212; Debian Linux Docs 1.0 documentation</title>
+    <title>Getting Started &#8212; Debian Linux Docs 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
@@ -14,8 +14,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Mounting Network Drives" href="Network-drives.html" />
-    <link rel="prev" title="Sphinx" href="Git.html" />
+    <link rel="next" title="First things First" href="First-things-First.html" />
+    <link rel="prev" title="Debian Linux Docs" href="../index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,10 +33,12 @@
 
           <div class="body" role="main">
             
-  <p>This guide documents the full process of replacing Windows with Debian 12 on an HP laptop, including BIOS setup, offline driver installation, and EasyRoam setup.</p>
+  <section id="getting-started">
+<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
+<p>This guide documents the full process of replacing Windows with Debian 12 on an HP laptop, including BIOS setup, offline driver installation, and EasyRoam setup.</p>
 <hr class="docutils" />
 <section id="debian-bootable-drive">
-<h1>1. Debian &amp; bootable drive<a class="headerlink" href="#debian-bootable-drive" title="Link to this heading">¶</a></h1>
+<h2>1. Debian &amp; bootable drive<a class="headerlink" href="#debian-bootable-drive" title="Link to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Go to the Debian download page:
 https://www.debian.org/distrib/</p></li>
@@ -53,10 +55,10 @@ https://www.debian.org/distrib/</p></li>
 </ul>
 </li>
 </ol>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="bios-uefi-configuration">
-<h1>2. BIOS/UEFI Configuration<a class="headerlink" href="#bios-uefi-configuration" title="Link to this heading">¶</a></h1>
+<h2>2. BIOS/UEFI Configuration<a class="headerlink" href="#bios-uefi-configuration" title="Link to this heading">¶</a></h2>
 <p>Enter BIOS Settings</p>
 <ul class="simple">
 <li><p>Restart your laptop and press <code class="docutils literal notranslate"><span class="pre">F10</span></code> repeatedly during boot to enter <strong>BIOS/UEFI setup</strong>.</p></li>
@@ -71,10 +73,10 @@ https://www.debian.org/distrib/</p></li>
 <li><p>Press <code class="docutils literal notranslate"><span class="pre">F9</span></code> on startup to enter <strong>Boot Device Options</strong></p></li>
 <li><p>Select the USB drive prefixed with <code class="docutils literal notranslate"><span class="pre">UEFI:</span></code> (e.g., <code class="docutils literal notranslate"><span class="pre">UEFI:</span> <span class="pre">SanDisk</span></code>)</p></li>
 </ul>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="install-debian-12">
-<h1>3. Install Debian 12<a class="headerlink" href="#install-debian-12" title="Link to this heading">¶</a></h1>
+<h2>3. Install Debian 12<a class="headerlink" href="#install-debian-12" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Boot into the Debian installer from USB</p></li>
 <li><p>Choose <strong>Graphical Install</strong></p></li>
@@ -89,19 +91,19 @@ https://www.debian.org/distrib/</p></li>
 <li><p>Set a <strong>root password</strong></p></li>
 <li><p>Create a regular user</p></li>
 </ol>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="login-manager-selection">
-<h1>4. Login Manager Selection<a class="headerlink" href="#login-manager-selection" title="Link to this heading">¶</a></h1>
+<h2>4. Login Manager Selection<a class="headerlink" href="#login-manager-selection" title="Link to this heading">¶</a></h2>
 <p>One or more desktop environment can be chosen while installing the linux. When prompted, choose:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">gdm3</span></code> → for GNOME desktop (default)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sddm</span></code> → for KDE Plasma (if installed)</p></li>
 </ul>
-<hr class="docutils" />
 </section>
+<hr class="docutils" />
 <section id="switching-to-superuser">
-<h1>5. Switching to superuser<a class="headerlink" href="#switching-to-superuser" title="Link to this heading">¶</a></h1>
+<h2>5. Switching to superuser<a class="headerlink" href="#switching-to-superuser" title="Link to this heading">¶</a></h2>
 <p>Open terminal and Switch to root to get admin privileges for modifying system and installing apps:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>su<span class="w"> </span>-
 </pre></div>
@@ -120,6 +122,7 @@ https://www.debian.org/distrib/</p></li>
 </pre></div>
 </div>
 <p>This will show something like, <code class="docutils literal notranslate"><span class="pre">gowtham</span> <span class="pre">:</span> <span class="pre">gowtham</span> <span class="pre">cdrom</span> <span class="pre">floppy</span> <span class="pre">sudo</span> <span class="pre">audio</span> <span class="pre">dip</span> <span class="pre">video</span> <span class="pre">plugdev</span> <span class="pre">users</span> <span class="pre">netdev</span> <span class="pre">bluetooth</span> <span class="pre">lpadmin</span> <span class="pre">scanner</span></code>. Now <code class="docutils literal notranslate"><span class="pre">gowtham</span></code> is a <code class="docutils literal notranslate"><span class="pre">superuser</span></code> or use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">whoami</span></code>.</p>
+</section>
 </section>
 
 
@@ -150,45 +153,31 @@ https://www.debian.org/distrib/</p></li>
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Coding.html">Coding</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#debian-bootable-drive">1. Debian &amp; bootable drive</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bios-uefi-configuration">2. BIOS/UEFI Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-debian-12">3. Install Debian 12</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#login-manager-selection">4. Login Manager Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#switching-to-superuser">5. Switching to superuser</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html">First things First</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Customization.html">Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Network drives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Trixie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">Tweaks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html">User specific softwares</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html">Common Softwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html">1. Fastfetch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html#oh-my-zsh">2. Oh My Zsh</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html#thunderbird-html-signature">3. Thunderbird HTML Signature</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html">1. Easyroam config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#fixing-dvd-source">2. Fixing DVD Source</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#installing-thunderbird">3. Installing Thunderbird</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#fullscreen">4. Fullscreen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#copy-paste-terminal-commands">5. Copy &amp; Paste terminal commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#default-desktop-environment">6. Default Desktop Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#brave-browser">7. Brave Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#nvidia-driver">8. NVIDIA Driver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#changing-default-terminal">9. Changing Default Terminal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#miniforge">10. Miniforge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#screenshot">11. Screenshot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#external-monitor">12. External Monitor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Git.html">Sphinx</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Debian &amp; bootable drive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#bios-uefi-configuration">2. BIOS/UEFI Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#install-debian-12">3. Install Debian 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#login-manager-selection">4. Login Manager Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#switching-to-superuser">5. Switching to superuser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Mounting Network Drives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Trixie.html#vpn">VPN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">De-encrypt a pdf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tweaks.html#git">Git</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html">1. MATLAB installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#globalprotect-vpn">2. GlobalProtect VPN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#kicad-debian-backports">3. KiCAD - Debian Backports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Coding.html">Coding</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="Git.html" title="previous chapter">Sphinx</a></li>
-      <li>Next: <a href="Network-drives.html" title="next chapter">Mounting Network Drives</a></li>
+      <li>Previous: <a href="../index.html" title="previous chapter">Debian Linux Docs</a></li>
+      <li>Next: <a href="First-things-First.html" title="next chapter">First things First</a></li>
   </ul></li>
 </ul>
 </div>

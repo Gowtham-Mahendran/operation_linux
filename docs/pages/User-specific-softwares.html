@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1. MATLAB installation &#8212; Debian Linux Docs 1.0 documentation</title>
+    <title>User specific softwares &#8212; Debian Linux Docs 1.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
     <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
@@ -14,7 +14,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="De-encrypt a pdf" href="Tweaks.html" />
+    <link rel="next" title="Common Softwares" href="Common-Softwares.html" />
+    <link rel="prev" title="Tweaks" href="Tweaks.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -32,8 +33,10 @@
 
           <div class="body" role="main">
             
-  <section id="matlab-installation">
-<h1>1. MATLAB installation<a class="headerlink" href="#matlab-installation" title="Link to this heading">¶</a></h1>
+  <section id="user-specific-softwares">
+<h1>User specific softwares<a class="headerlink" href="#user-specific-softwares" title="Link to this heading">¶</a></h1>
+<section id="matlab-installation">
+<h2>1. MATLAB installation<a class="headerlink" href="#matlab-installation" title="Link to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Download the iso file for linux</p></li>
 <li><p>Suppose your ISO is called matlab_R2025a_glnxa64.iso and located in your Downloads folder:</p></li>
@@ -208,7 +211,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 </div>
 <p>If it outputs <code class="docutils literal notranslate"><span class="pre">MEX</span> <span class="pre">configured</span> <span class="pre">to</span> <span class="pre">use</span> <span class="pre">'gcc'</span> <span class="pre">for</span> <span class="pre">C</span> <span class="pre">language</span> <span class="pre">compilation</span></code>, everything is in order.</p>
 <section id="c2000-setup">
-<h2>C2000 Setup<a class="headerlink" href="#c2000-setup" title="Link to this heading">¶</a></h2>
+<h3>C2000 Setup<a class="headerlink" href="#c2000-setup" title="Link to this heading">¶</a></h3>
 <p>Download <a class="reference external" href="https://www.ti.com/tool/download/CCSTUDIO/12.4.0">CCS offline installer</a>.</p>
 <p>To extract the files, go to your Downloads folder,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">Downloads</span>
@@ -407,7 +410,7 @@ gowtham@deb-gowarc  ~/ti/ccs1240/ccs/install_scripts 
 </div>
 </section>
 <section id="c2000ware">
-<h2>C2000Ware<a class="headerlink" href="#c2000ware" title="Link to this heading">¶</a></h2>
+<h3>C2000Ware<a class="headerlink" href="#c2000ware" title="Link to this heading">¶</a></h3>
 <p>Download <a class="reference external" href="https://www.ti.com/tool/download/C2000WARE/5.00.00.00">c2000ware</a></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gowtham@deb-gowarc  /opt  ~/Downloads 
  gowtham@deb-gowarc  ~/Downloads  ./C2000Ware_5_00_00_00_setup.run --mode unattended --prefix ~/ti/c2000  
@@ -430,7 +433,7 @@ c2000  ccs1240  CCSExternalReferences  tirex-localserver-3.7.1
 </section>
 </section>
 <section id="globalprotect-vpn">
-<h1>2. GlobalProtect VPN<a class="headerlink" href="#globalprotect-vpn" title="Link to this heading">¶</a></h1>
+<h2>2. GlobalProtect VPN<a class="headerlink" href="#globalprotect-vpn" title="Link to this heading">¶</a></h2>
 <p>GlobalProtect offers you two different methods to install the GlobalProtect app on your Linux device: a GUI-based installation version and a CLI version. If you use a supported Linux operating system that supports a graphical interface, you can install the GUI version of the GlobalProtect; otherwise, download and install the CLI version of the GlobalProtect app. <a class="reference external" href="https://docs.paloaltonetworks.com/globalprotect/5-1/globalprotect-app-user-guide/globalprotect-app-for-linux/download-and-install-the-globalprotect-app-for-linux#id181NC050F59">Reference</a></p>
 <ol class="arabic simple">
 <li><p>Download GUI version and install the .deb file by double clicking on it</p></li>
@@ -478,7 +481,7 @@ lo        9ec90b71-7d0c-4bfb-83f0-f06ad342060c  loopback  lo
 <p>The TYPE is <code class="docutils literal notranslate"><span class="pre">tun</span></code>, which stands for TUNnel — a software-only (non-ethernet) point-to-point device.</p>
 </section>
 <section id="kicad-debian-backports">
-<h1>3. KiCAD - Debian Backports<a class="headerlink" href="#kicad-debian-backports" title="Link to this heading">¶</a></h1>
+<h2>3. KiCAD - Debian Backports<a class="headerlink" href="#kicad-debian-backports" title="Link to this heading">¶</a></h2>
 <p>Debian’s Backports archive is an official way to get newer (“back-ported”) versions of packages on your stable system without sacrificing its overall stability. Backports is a separate APT repository (e.g. bookworm-backports for Debian 12) that Debian maintainers populate with newer releases of software originally built for Debian Testing or Unstable. Stable’s main archive often has older releases (e.g. KiCad 6 in Debian 12). Backports let you get KiCad 9 (or other up-to-date software) without waiting for the next Debian release. <a class="reference external" href="https://www.kicad.org/download/linux/">Refer</a></p>
 <p>To use backports, we need to enable the backports repo,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;deb http://deb.debian.org/debian bookworm-backports main contrib non-free&quot;</span> \
@@ -494,6 +497,7 @@ lo        9ec90b71-7d0c-4bfb-83f0-f06ad342060c  loopback  lo
 </pre></div>
 </div>
 <p>The -t flag in APT stands for “target release” (it’s shorthand for –target-release). It tells APT which release (or suite) you want to pull a package from, rather than using the default “stable” archive.</p>
+</section>
 </section>
 
 
@@ -524,48 +528,29 @@ lo        9ec90b71-7d0c-4bfb-83f0-f06ad342060c  loopback  lo
 <script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="Coding.html">Coding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html">Common Softwares</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html">1. Fastfetch</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html#oh-my-zsh">2. Oh My Zsh</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Customization.html#thunderbird-html-signature">3. Thunderbird HTML Signature</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html">1. Easyroam config</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#fixing-dvd-source">2. Fixing DVD Source</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#installing-thunderbird">3. Installing Thunderbird</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#fullscreen">4. Fullscreen</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#copy-paste-terminal-commands">5. Copy &amp; Paste terminal commands</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#default-desktop-environment">6. Default Desktop Environment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#brave-browser">7. Brave Browser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#nvidia-driver">8. NVIDIA Driver</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#changing-default-terminal">9. Changing Default Terminal</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#miniforge">10. Miniforge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#screenshot">11. Screenshot</a></li>
-<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#external-monitor">12. External Monitor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Git.html">Sphinx</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html">1. Debian &amp; bootable drive</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#bios-uefi-configuration">2. BIOS/UEFI Configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#install-debian-12">3. Install Debian 12</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#login-manager-selection">4. Login Manager Selection</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Home.html#switching-to-superuser">5. Switching to superuser</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Mounting Network Drives</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Docker</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Trixie.html#vpn">VPN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">De-encrypt a pdf</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Tweaks.html#git">Git</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">1. MATLAB installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#c2000-setup">C2000 Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#c2000ware">C2000Ware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html">First things First</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Customization.html">Customization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Network drives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Trixie</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">Tweaks</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User specific softwares</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#matlab-installation">1. MATLAB installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#globalprotect-vpn">2. GlobalProtect VPN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kicad-debian-backports">3. KiCAD - Debian Backports</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#globalprotect-vpn">2. GlobalProtect VPN</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#kicad-debian-backports">3. KiCAD - Debian Backports</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html">Common Softwares</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Coding.html">Coding</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="Tweaks.html" title="previous chapter">De-encrypt a pdf</a></li>
+      <li>Previous: <a href="Tweaks.html" title="previous chapter">Tweaks</a></li>
+      <li>Next: <a href="Common-Softwares.html" title="next chapter">Common Softwares</a></li>
   </ul></li>
 </ul>
 </div>

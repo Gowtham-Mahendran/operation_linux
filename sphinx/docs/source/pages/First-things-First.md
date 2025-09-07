@@ -1,3 +1,5 @@
+# First things First
+
 This document logs the steps taken to:
 
 - Wifi (easyroam)

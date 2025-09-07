@@ -6,9 +6,9 @@
 Debian Linux Docs
 ===============================
 
-Add your content using ``reStructuredText`` syntax. See the
-`reStructuredText <https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html>`_
-documentation for details.
+Hey All! I was using windows and thought of switching to linux for a long time. Finally the time arrived 😃. Here I have documented my journey of Debian Linux with the basic things and solutions to the problems that I have encountered. I hope it might be useful for someone.
+
+This repository provides essential guidelines and commands for effectively operating and managing Linux systems. It covers fundamental operations, troubleshooting steps, and practical tips to streamline your Linux experience.
 
 
 .. toctree::
@@ -16,4 +16,13 @@ documentation for details.
    :caption: Contents:
    :glob:
 
-   pages/*
+   pages/Home.md
+   pages/First-things-First.md
+   pages/Customization.md
+   pages/Git.md
+   pages/Network-drives.md
+   pages/Trixie.md
+   pages/Tweaks.md
+   pages/User-specific-softwares.md
+   pages/Common-Softwares.md
+   pages/Coding.md

@@ -1,3 +1,5 @@
+# Tweaks
+
 ## De-encrypt a pdf
 
 1. Download `xpdf-utils' using `sudo apt-get install xpdf-utils`

@@ -1,3 +1,4 @@
+# Customization
 
 ## 1. Fastfetch
 
