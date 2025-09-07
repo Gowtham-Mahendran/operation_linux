@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Easyroam config &#8212; Debian Linux Docs 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sphinx" href="Git.html" />
+    <link rel="prev" title="1. Fastfetch" href="Customization.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <p>This document logs the steps taken to:</p>
+<ul class="simple">
+<li><p>Wifi (easyroam)</p></li>
+<li><p>Fix Debian package sources</p></li>
+<li><p>Install Thunderbird</p></li>
+<li><p>Full screen</p></li>
+<li><p>Copy &amp; Paste commands from terminal</p></li>
+<li><p>Default Desktop env</p></li>
+<li><p>Brave Browser</p></li>
+<li><p>NVIDIA Driver</p></li>
+<li><p>Default Terminal</p></li>
+<li><p>Conda (Miniforge)</p></li>
+<li><p>Screenshot</p></li>
+<li><p>External Monitor</p></li>
+</ul>
+<hr class="docutils" />
+<section id="easyroam-config">
+<h1>1. Easyroam config<a class="headerlink" href="#easyroam-config" title="Link to this heading">¶</a></h1>
+<p>The certificate is only valid for <strong>90 days</strong> and must be replaced after this period.</p>
+<p>To configure <strong>eduroam</strong> using a script, follow these steps:</p>
+<ol class="arabic">
+<li><p>Open <a class="reference external" href="https://www.easyroam.de">https://www.easyroam.de</a> in your web browser.</p></li>
+<li><p>In the search field, enter your institution name, e.g., <code class="docutils literal notranslate"><span class="pre">UOL</span></code>.</p></li>
+<li><p>Log in using your institutional credentials.</p></li>
+<li><p>Click on <strong>“Manual options”</strong> and select <strong>PKCS12</strong> as the format.</p></li>
+<li><p>Enter a profile name of your choice and click <strong>“Generate profile”</strong>.</p></li>
+<li><p>Download the configuration script <code class="docutils literal notranslate"><span class="pre">easyroam.sh</span></code> from:<br />
+<a class="reference external" href="https://helpdesk.th-ab.de/help/en-us/6-configure-eduroam-easyroam/9-easyroam-linux">https://helpdesk.th-ab.de/help/en-us/6-configure-eduroam-easyroam/9-easyroam-linux</a></p>
+<p>easyroam.sh – Script to Configure Eduroam with PKCS12 Certificate</p>
+<blockquote>
+<div><p>This script sets up an eduroam NetworkManager profile using a PKCS12 certificate.<br />
+It supports both NetworkManager (most Linux distros) and ConnMan (used on SailfishOS).</p>
+</div></blockquote>
+</li>
+</ol>
+<details>
+<summary>Click to expand script</summary>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="c1"># easyroam.sh cert - install pkcs12 certificate as Easyroam NetworkManager Profile</span>
+<span class="nv">helpString</span><span class="o">=</span><span class="s2">&quot;Usage </span><span class="nv">$0</span><span class="s2"> &lt;certificate&gt;&quot;</span>
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$#</span><span class="w"> </span>-lt<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$helpString</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="k">fi</span>
+
+<span class="k">case</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span><span class="w"> </span><span class="k">in</span>
+-h<span class="p">|</span>--help<span class="o">)</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$helpString</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span>exit<span class="p">;;</span>
+<span class="k">esac</span>
+
+<span class="nv">ClientCertificate</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="nv">connection</span><span class="o">=</span><span class="s2">&quot;easyroam&quot;</span>
+
+<span class="o">[</span><span class="w"> </span>-f<span class="w"> </span>/etc/os-release<span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w">  </span>.<span class="w"> </span>/etc/os-release
+
+check_nmcli<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="nb">type</span><span class="w"> </span>nmcli<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: nmcli not found!&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;This wizard assumes that your network connections are managed by NetworkManager.&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">		</span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">	</span><span class="k">fi</span>
+<span class="o">}</span>
+
+check_gdbus<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span>!<span class="w"> </span><span class="nb">type</span><span class="w"> </span>gdbus<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: gdbus not found!&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">		</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;This wizard assumes that your network connections are managed by NetworkManager.&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">		</span><span class="nb">exit</span><span class="w"> </span><span class="m">1</span>
+<span class="w">	</span><span class="k">fi</span>
+<span class="o">}</span>
+
+cleanup_networkmanager<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span><span class="k">for</span><span class="w"> </span>conn<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nv">$connection</span><span class="w"> </span>eduroam<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">		</span><span class="k">for</span><span class="w"> </span>uuid<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>nmcli<span class="w"> </span>connection<span class="w"> </span>show<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;$1==c{ print $2 }&#39;</span><span class="w"> </span><span class="nv">c</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$conn</span><span class="s2">&quot;</span><span class="k">)</span><span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">			</span>nmcli<span class="w"> </span>connection<span class="w"> </span>delete<span class="w"> </span>uuid<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$uuid</span><span class="s2">&quot;</span>
+<span class="w">		</span><span class="k">done</span>
+<span class="w">	</span><span class="k">done</span>
+<span class="o">}</span>
+
+add_networkmanager<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>nmcli<span class="w"> </span>connection<span class="w"> </span>add<span class="w"> </span><span class="se">\</span>
+<span class="w">		</span><span class="nb">type</span><span class="w"> </span>wifi<span class="w"> </span><span class="se">\</span>
+<span class="w">		</span>con-name<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$connection</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">		</span>ssid<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$SSID</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">		</span>--<span class="w"> </span><span class="se">\</span>
+<span class="w">		</span>wifi-sec.key-mgmt<span class="w"> </span>wpa-eap<span class="w"> </span><span class="se">\</span>
+<span class="w">		</span><span class="m">802</span>-1x.eap<span class="w"> </span>tls<span class="w"> </span><span class="se">\</span>
+<span class="w">		</span><span class="m">802</span>-1x.identity<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$OuterIdentity</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">		</span><span class="m">802</span>-1x.ca-cert<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$root_ca_file</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">		</span><span class="m">802</span>-1x.client-cert<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$client_cert_file</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">		</span><span class="m">802</span>-1x.private-key-password<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$Passphrase</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">		</span><span class="m">802</span>-1x.private-key<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$client_key_file</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+add_connman<span class="o">()</span><span class="w"> </span><span class="o">{</span>
+<span class="w">	</span>devel-su<span class="w"> </span>gdbus<span class="w"> </span>call<span class="w"> </span>--system<span class="w"> </span>--dest<span class="w"> </span>net.connman<span class="w">  </span>--object-path<span class="w"> </span>/<span class="w"> </span>--method<span class="w"> </span>net.connman.Manager.CreateService<span class="w"> </span><span class="se">\</span>
+<span class="w">	</span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">	</span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">	</span><span class="s2">&quot;&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">	</span><span class="s2">&quot;[(&#39;AutoConnect&#39;, &#39;true&#39;), (&#39;CACert&#39;, &#39;</span><span class="k">$(</span>cat<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$root_ca_file</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&#39;),(&#39;ClientCertFile&#39;, &#39;</span><span class="nv">$client_cert_file</span><span class="s2">&#39;),</span>
+<span class="s2">	(&#39;PrivateKeyFile&#39;, &#39;</span><span class="nv">$client_key_file</span><span class="s2">&#39;), (&#39;PrivateKeyPassphrase&#39;, &#39;</span><span class="nv">$Passphrase</span><span class="s2">&#39;),</span>
+<span class="s2">	(&#39;EAP&#39;, &#39;tls&#39;), (&#39;Hidden&#39;, &#39;false&#39;), (&#39;Identity&#39;, &#39;</span><span class="nv">$OuterIdentity</span><span class="s2">&#39;), (&#39;Name&#39;, &#39;eduroam&#39;),</span>
+<span class="s2">	(&#39;Phase2&#39;, &#39;PAP&#39;), (&#39;Security&#39;, &#39;ieee8021x&#39;)]&quot;</span>
+<span class="o">}</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sailfishos&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">	</span>check_gdbus
+<span class="k">else</span>
+<span class="w">	</span>check_nmcli
+<span class="k">fi</span>
+
+<span class="k">for</span><span class="w"> </span>d<span class="w"> </span><span class="k">in</span><span class="w"> </span>openssl<span class="w"> </span>awk<span class="p">;</span><span class="w"> </span><span class="k">do</span>
+<span class="w">	</span><span class="nb">type</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="k">continue</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;ERROR: </span><span class="nv">$d</span><span class="s2"> not found!&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;You may fix this using:&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">type</span><span class="w"> </span>apt<span class="w">          </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sudo apt install -y </span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">type</span><span class="w"> </span>dnf<span class="w">          </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sudo dnf install -y </span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">type</span><span class="w"> </span>zypper<span class="w">       </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sudo zypper install </span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">type</span><span class="w"> </span>pacman<span class="w">       </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sudo pacman -Syu </span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">type</span><span class="w"> </span>pkcon<span class="w">        </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;devel-su pkconf install </span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">type</span><span class="w"> </span>xbps-install<span class="w"> </span>&gt;/dev/null<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;sudo xbps-install -Su </span><span class="nv">$d</span><span class="s2">&quot;</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span>&gt;<span class="p">&amp;</span><span class="m">2</span>
+<span class="w">	</span><span class="nb">exit</span><span class="w"> </span><span class="m">2</span>
+<span class="k">done</span>
+
+<span class="nv">conf_dir</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/.easyroam&quot;</span>
+<span class="nv">client_cert_file</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$conf_dir</span><span class="s2">/easyroam_client_cert.pem&quot;</span>
+<span class="nv">client_key_file</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$conf_dir</span><span class="s2">/easyroam_client_key.pem&quot;</span>
+<span class="nv">root_ca_file</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$conf_dir</span><span class="s2">/easyroam_root_ca.pem&quot;</span>
+
+<span class="o">[</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$conf_dir</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$conf_dir</span><span class="s2">&quot;</span>
+
+<span class="nv">openssl_extra</span><span class="o">=</span>
+<span class="nv">version</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>version<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="s2">&quot;[ .]&quot;</span><span class="w"> </span><span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+<span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">version</span><span class="k">:-</span><span class="nv">2</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>-ge<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">]</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nv">openssl_extra</span><span class="o">=</span><span class="s2">&quot;-legacy&quot;</span>
+
+<span class="nv">SSID</span><span class="o">=</span>eduroam
+<span class="nv">Passphrase</span><span class="o">=</span><span class="k">$(</span>openssl<span class="w"> </span>rand<span class="w"> </span>-base64<span class="w"> </span><span class="m">24</span><span class="k">)</span>
+
+<span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;Extracting client cert ... &quot;</span>
+openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$openssl_extra</span><span class="w"> </span>-in<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ClientCertificate</span><span class="s2">&quot;</span><span class="w"> </span>-passin<span class="w"> </span><span class="s2">&quot;pass:&quot;</span><span class="w"> </span>-nokeys<span class="w"> </span>-out<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$client_cert_file</span><span class="s2">&quot;</span>
+<span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;success\n&quot;</span>
+
+<span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;Extracting client key ... &quot;</span>
+openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$openssl_extra</span><span class="w"> </span>-in<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ClientCertificate</span><span class="s2">&quot;</span><span class="w"> </span>-passin<span class="w"> </span><span class="s2">&quot;pass:&quot;</span><span class="w"> </span>-passout<span class="w"> </span><span class="s2">&quot;pass:</span><span class="nv">$Passphrase</span><span class="s2">&quot;</span><span class="w"> </span>-nodes<span class="w"> </span>-nocerts<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="se">\</span>
+<span class="w">	</span>openssl<span class="w"> </span>rsa<span class="w"> </span>-passout<span class="w"> </span><span class="s2">&quot;pass:</span><span class="nv">$Passphrase</span><span class="s2">&quot;</span><span class="w"> </span>-aes128<span class="w"> </span>-out<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$client_key_file</span><span class="s2">&quot;</span>
+
+<span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;Extracting CA cert ... &quot;</span>
+openssl<span class="w"> </span>pkcs12<span class="w"> </span><span class="nv">$openssl_extra</span><span class="w"> </span>-passin<span class="w"> </span><span class="s2">&quot;pass:&quot;</span><span class="w"> </span>-passout<span class="w"> </span><span class="s2">&quot;pass:&quot;</span><span class="w"> </span>-nokeys<span class="w"> </span>-in<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ClientCertificate</span><span class="s2">&quot;</span><span class="w"> </span>-cacerts<span class="w"> </span>-out<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$root_ca_file</span><span class="s2">&quot;</span>
+<span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;success\n&quot;</span>
+
+<span class="nv">OuterIdentity</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>openssl<span class="w"> </span>x509<span class="w"> </span>-noout<span class="w"> </span>-in<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$client_cert_file</span><span class="s2">&quot;</span><span class="w"> </span>-subject<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span>-F<span class="w"> </span><span class="se">\,</span><span class="w"> </span><span class="s1">&#39;{print $1}&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/.*=//&#39;</span><span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/\s*//&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$ID</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;sailfishos&quot;</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">	</span>add_connman
+<span class="k">else</span>
+<span class="w">	</span>cleanup_networkmanager
+<span class="w">	</span>add_networkmanager
+<span class="k">fi</span>
+</pre></div>
+</div>
+</details>
+<ol class="arabic" start="7">
+<li><p>Open a terminal in your download directory and run the script with the certificate path as an argument. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="n">easyroam</span><span class="o">.</span><span class="n">sh</span> <span class="n">easyroam_</span><span class="o">*.</span><span class="n">p12</span>
+</pre></div>
+</div>
+</li>
+<li><p>To check the internet connection, use something similiar</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ping</span> <span class="n">www</span><span class="o">.</span><span class="n">google</span><span class="o">.</span><span class="n">com</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="fixing-dvd-source">
+<h1>2. Fixing DVD Source<a class="headerlink" href="#fixing-dvd-source" title="Link to this heading">¶</a></h1>
+<p>After trying to install Thunderbird via <code class="docutils literal notranslate"><span class="pre">apt</span></code>, the system prompted for the installation DVD:</p>
+<p><em>Media change: please insert the disc labeled ‘Debian GNU/Linux 12.11.0 …’</em></p>
+<p>This means the system was still using the DVD as a source for packages.</p>
+<p><em><strong>Solution:</strong></em></p>
+<ol class="arabic">
+<li><p>Open the sources list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apt</span><span class="o">/</span><span class="n">sources</span><span class="o">.</span><span class="n">list</span>
+</pre></div>
+</div>
+</li>
+<li><p>Comment out the CD/DVD source line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># deb cdrom:[Debian GNU/Linux 12.11.0 _Bookworm_ ...]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Add the following online sources (if not already present):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">deb</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span> <span class="n">bookworm</span> <span class="n">main</span> <span class="n">contrib</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span><span class="o">-</span><span class="n">firmware</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">security</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span><span class="o">-</span><span class="n">security</span> <span class="n">bookworm</span><span class="o">-</span><span class="n">security</span> <span class="n">main</span> <span class="n">contrib</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span><span class="o">-</span><span class="n">firmware</span>
+<span class="n">deb</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">deb</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">debian</span> <span class="n">bookworm</span><span class="o">-</span><span class="n">updates</span> <span class="n">main</span> <span class="n">contrib</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span> <span class="n">non</span><span class="o">-</span><span class="n">free</span><span class="o">-</span><span class="n">firmware</span>
+</pre></div>
+</div>
+</li>
+<li><p>Save and exit Nano:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ctrl</span> <span class="o">+</span> <span class="n">O</span><span class="p">,</span> <span class="n">Enter</span> <span class="n">to</span> <span class="n">save</span>
+<span class="n">Ctrl</span> <span class="o">+</span> <span class="n">X</span> <span class="n">to</span> <span class="n">exit</span>
+</pre></div>
+</div>
+</li>
+<li><p>Update package lists:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span>
+</pre></div>
+</div>
+</li>
+<li><p>Checking for Available Package Upgrades</p>
+<p>To find packages that had available updates:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="nb">list</span> <span class="o">--</span><span class="n">upgradable</span>
+</pre></div>
+</div>
+<p>This listed 56 packages, including updates for: Firefox ESR, GIMP, Systemd, Kernel, WebKit, udev, GStreamer, ca-certificates etc.,</p>
+</li>
+<li><p>Performing a Full Upgrade</p>
+<p>To upgrade all listed packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+</pre></div>
+</div>
+<p>And then (recommended) reboot for kernel/system updates to take effect:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">reboot</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="installing-thunderbird">
+<h1>3. Installing Thunderbird<a class="headerlink" href="#installing-thunderbird" title="Link to this heading">¶</a></h1>
+<p>Once the sources were fixed, Thunderbird could be installed normally:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">thunderbird</span> 
+</pre></div>
+</div>
+<p>This downloaded the package from online mirrors instead of prompting for the DVD.</p>
+</section>
+<section id="fullscreen">
+<h1>4. Fullscreen<a class="headerlink" href="#fullscreen" title="Link to this heading">¶</a></h1>
+<p>To exit fullscreen mode in a graphical terminal window (like GNOME Terminal, Konsole, etc.):</p>
+<p>Press F11</p>
+</section>
+<section id="copy-paste-terminal-commands">
+<h1>5. Copy &amp; Paste terminal commands<a class="headerlink" href="#copy-paste-terminal-commands" title="Link to this heading">¶</a></h1>
+<p><a class="reference external" href="https://superuser.com/questions/357248/how-to-copy-the-terminal-output">How to copy the terminal output?</a></p>
+<p>you can copy-paste the selected text using</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ctrl</span> <span class="o">+</span> <span class="n">Shift</span> <span class="o">+</span> <span class="n">C</span>
+<span class="n">Ctrl</span> <span class="o">+</span> <span class="n">Shift</span> <span class="o">+</span> <span class="n">V</span> 
+</pre></div>
+</div>
+</section>
+<section id="default-desktop-environment">
+<h1>6. Default Desktop Environment<a class="headerlink" href="#default-desktop-environment" title="Link to this heading">¶</a></h1>
+<p>Set other desktop environments as default (Gnome to KDE Plasma)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">x</span><span class="o">-</span><span class="n">session</span><span class="o">-</span><span class="n">manager</span>
+</pre></div>
+</div>
+<p>To remove the GNOME files completely</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">autoremove</span> <span class="o">--</span><span class="n">purge</span> <span class="n">gnome</span><span class="o">*</span> 
+</pre></div>
+</div>
+</section>
+<section id="brave-browser">
+<h1>7. Brave Browser<a class="headerlink" href="#brave-browser" title="Link to this heading">¶</a></h1>
+<p>Here is the linux <a class="reference external" href="https://brave.com/linux/">download</a> page of Brave browser</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="n">install</span> <span class="n">curl</span>
+<span class="n">curl</span> <span class="o">-</span><span class="n">fsS</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">dl</span><span class="o">.</span><span class="n">brave</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="o">|</span> <span class="n">sh</span>
+</pre></div>
+</div>
+</section>
+<section id="nvidia-driver">
+<h1>8. NVIDIA Driver<a class="headerlink" href="#nvidia-driver" title="Link to this heading">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="mf">0.259410</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">BIOS</span> <span class="n">Error</span> <span class="p">(</span><span class="n">bug</span><span class="p">):</span> <span class="n">Failure</span> <span class="n">creating</span> <span class="n">named</span> <span class="nb">object</span> <span class="p">[</span><span class="n">_SB</span><span class="o">.</span><span class="n">PCI0</span><span class="o">.</span><span class="n">GPP0</span><span class="o">.</span><span class="n">VGA</span><span class="p">],</span> <span class="n">AE_ALREADY_EXISTS</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">dswload2</span><span class="o">-</span><span class="mi">326</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.259421</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">Error</span><span class="p">:</span> <span class="n">AE_ALREADY_EXISTS</span><span class="p">,</span> <span class="n">During</span> <span class="n">name</span> <span class="n">lookup</span><span class="o">/</span><span class="n">catalog</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">psobject</span><span class="o">-</span><span class="mi">220</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.259492</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">BIOS</span> <span class="n">Error</span> <span class="p">(</span><span class="n">bug</span><span class="p">):</span> <span class="n">Failure</span> <span class="n">creating</span> <span class="n">named</span> <span class="nb">object</span> <span class="p">[</span><span class="n">_SB</span><span class="o">.</span><span class="n">PCI0</span><span class="o">.</span><span class="n">GPP0</span><span class="o">.</span><span class="n">HDAU</span><span class="p">],</span> <span class="n">AE_ALREADY_EXISTS</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">dswload2</span><span class="o">-</span><span class="mi">326</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.259436</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">Error</span><span class="p">:</span> <span class="n">AE_ALREADY_EXISTS</span><span class="p">,</span> <span class="n">During</span> <span class="n">name</span> <span class="n">lookup</span><span class="o">/</span><span class="n">catalog</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">psobject</span><span class="o">-</span><span class="mi">220</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909192</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909414</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909528</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909560</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909787</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">1.998245</span><span class="p">]</span> <span class="n">nouveau</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mf">00.0</span><span class="p">:</span> <span class="n">firmware</span><span class="p">:</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">load</span> <span class="n">nvidia</span><span class="o">/</span><span class="n">ga107</span><span class="o">/</span><span class="n">nvdec</span><span class="o">/</span><span class="n">scrubber</span><span class="o">.</span><span class="n">bin</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">1.998271</span><span class="p">]</span> <span class="n">firmware_class</span><span class="p">:</span> <span class="n">See</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">wiki</span><span class="o">.</span><span class="n">debian</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">Firmware</span> <span class="k">for</span> <span class="n">information</span> <span class="n">about</span> <span class="n">missing</span> <span class="n">firmware</span>
+<span class="p">[</span> <span class="mf">1.998307</span><span class="p">]</span> <span class="n">nouveau</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">01</span><span class="p">:</span><span class="mf">00.0</span><span class="p">:</span> <span class="n">firmware</span><span class="p">:</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">load</span> <span class="n">nvidia</span><span class="o">/</span><span class="n">ga107</span><span class="o">/</span><span class="n">nvdec</span><span class="o">/</span><span class="n">scrubber</span><span class="o">.</span><span class="n">bin</span> <span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The last three errors shows that the nvidia driver is failed to load. The nvidia-detect script (found in the <a class="reference external" href="https://packages.debian.org/nvidia-detect">nvidia-detect</a> package in the <a class="reference external" href="https://www.debian.org/doc/debian-policy/ch-archive#s-non-free">non-free</a> section) can also be used to identify the GPU and the recommended driver package to install. Refer the nvidia debian page <a class="reference external" href="https://wiki.debian.org/NvidiaGraphicsDrivers">here</a></p>
+<ol class="arabic simple">
+<li><p>Install the detect driver</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="n">install</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">detect</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Detect the driver using</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvidia</span><span class="o">-</span><span class="n">detect</span>
+</pre></div>
+</div>
+<p>The output is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gowtham@deb-gowarc:~$ nvidia-detect
+Detected NVIDIA GPUs:
+01:00.0 VGA compatible controller [0300]: NVIDIA Corporation GA107M [GeForce RTX 3050 Mobile] [10de:25a2] (rev a1)
+
+Checking card:  NVIDIA Corporation GA107M [GeForce RTX 3050 Mobile] (rev a1)
+Your card is supported by all driver versions.
+Your card is also supported by the Tesla 470 drivers series.
+It is recommended to install the
+nvidia-driver
+package.
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Install the nvidia-driver</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="n">install</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">driver</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>During installation, it prompted saying NVIDIA proprietary driver is conflicting with the open-source Nouveau driver. It asked for reboot after installation. Once installed, Reboot in <code class="docutils literal notranslate"><span class="pre">su</span></code></p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">reboot</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>verify the installation using</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
+</pre></div>
+</div>
+<p>The output is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gowtham@deb-gowarc:~$ nvidia-smi
+Thu Jun 26 17:13:29 2025       
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.247.01             Driver Version: 535.247.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce RTX 3050 ...    On  | 00000000:01:00.0 Off |                  N/A |
+| N/A   47C    P3              17W /  30W |      8MiB /  4096MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                      
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A       949      G   /usr/lib/xorg/Xorg                            4MiB |
++---------------------------------------------------------------------------------------+
+</pre></div>
+</div>
+<p>while rebooting, the nvidia driver error got resolved.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="mf">0.259410</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">BIOS</span> <span class="n">Error</span> <span class="p">(</span><span class="n">bug</span><span class="p">):</span> <span class="n">Failure</span> <span class="n">creating</span> <span class="n">named</span> <span class="nb">object</span> <span class="p">[</span><span class="n">_SB</span><span class="o">.</span><span class="n">PCI0</span><span class="o">.</span><span class="n">GPP0</span><span class="o">.</span><span class="n">VGA</span><span class="p">],</span> <span class="n">AE_ALREADY_EXISTS</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">dswload2</span><span class="o">-</span><span class="mi">326</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.259421</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">Error</span><span class="p">:</span> <span class="n">AE_ALREADY_EXISTS</span><span class="p">,</span> <span class="n">During</span> <span class="n">name</span> <span class="n">lookup</span><span class="o">/</span><span class="n">catalog</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">psobject</span><span class="o">-</span><span class="mi">220</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.259492</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">BIOS</span> <span class="n">Error</span> <span class="p">(</span><span class="n">bug</span><span class="p">):</span> <span class="n">Failure</span> <span class="n">creating</span> <span class="n">named</span> <span class="nb">object</span> <span class="p">[</span><span class="n">_SB</span><span class="o">.</span><span class="n">PCI0</span><span class="o">.</span><span class="n">GPP0</span><span class="o">.</span><span class="n">HDAU</span><span class="p">],</span> <span class="n">AE_ALREADY_EXISTS</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">dswload2</span><span class="o">-</span><span class="mi">326</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.259436</span><span class="p">]</span> <span class="n">ACPI</span> <span class="n">Error</span><span class="p">:</span> <span class="n">AE_ALREADY_EXISTS</span><span class="p">,</span> <span class="n">During</span> <span class="n">name</span> <span class="n">lookup</span><span class="o">/</span><span class="n">catalog</span> <span class="p">(</span><span class="mi">20220331</span><span class="o">/</span><span class="n">psobject</span><span class="o">-</span><span class="mi">220</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909192</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909414</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909528</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909560</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+<span class="p">[</span> <span class="mf">0.909787</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Blacklist: Problem blacklisting hash (-13)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span> <span class="mf">0.909192</span><span class="p">]</span> <span class="n">blacklist</span><span class="p">:</span> <span class="n">Problem</span> <span class="n">blacklisting</span> <span class="nb">hash</span> <span class="p">(</span><span class="o">-</span><span class="mi">13</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Blacklisting in Linux is a way to prevent certain kernel modules from loading (e.g., to block nouveau if using NVIDIA proprietary driver).</p>
+<p>It means, the kernel tried to blacklist a module based on a hash but failed.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">code</span> <span class="pre">-13</span></code> corresponds to Permission Denied (EACCES).</p>
+<p>This likely means the kernel could not read or write to <code class="docutils literal notranslate"><span class="pre">/etc/modprobe.d/</span></code> or related files due to permission or filesystem issues.</p>
+<p>To check ownership, content and permissions of:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gowtham@deb-gowarc:~$ ls -l /etc/modprobe.d/
+total 8
+-rw-r--r-- 1 root root 154 Aug 24  2024 amd64-microcode-blacklist.conf
+-rw-r--r-- 1 root root 127 Jul 12  2023 dkms.conf
+lrwxrwxrwx 1 root root  53 May  8 22:59 nvidia-blacklists-nouveau.conf -&gt; /etc/alternatives/glx--nvidia-blacklists-nouveau.conf
+lrwxrwxrwx 1 root root  43 May  8 22:59 nvidia.conf -&gt; /etc/alternatives/glx--nvidia-modprobe.conf
+lrwxrwxrwx 1 root root  45 May  8 22:59 nvidia-options.conf -&gt; /etc/alternatives/nvidia--nvidia-options.conf
+</pre></div>
+</div>
+<p>Now we need to verify the content of that file to ensure it actually blacklists nouveau correctly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gowtham@deb-gowarc:~$ cat /etc/nvidia/nvidia-blacklists-nouveau.conf
+# You need to run &quot;update-initramfs -u&quot; after editing this file.
+
+# see #580894
+blacklist nouveau
+</pre></div>
+</div>
+<p>The file only has <code class="docutils literal notranslate"><span class="pre">blacklist</span> <span class="pre">nouveau</span></code> but not <code class="docutils literal notranslate"><span class="pre">options</span> <span class="pre">nouveau</span> <span class="pre">modeset=0</span></code> that disables nouveau modesetting. Without that, the nouveau driver can still be loaded early in the boot process via initramfs, which is likely why boot-time errors are seen. To solve, edit or create a file explicitly blacklisting <code class="docutils literal notranslate"><span class="pre">nouveau</span></code> with both required lines. To open the file,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">modprobe</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">blacklist</span><span class="o">-</span><span class="n">nouveau</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Add the following content</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">blacklist</span> <span class="n">nouveau</span>
+<span class="n">options</span> <span class="n">nouveau</span> <span class="n">modeset</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Save and exit (Ctrl + O, Enter, then Ctrl + X).</p>
+<p>To apply the change and make sure nouveau is removed from early boot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">update</span><span class="o">-</span><span class="n">initramfs</span> <span class="o">-</span><span class="n">u</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">reboot</span></code> once done. <strong><em>The blacklist error is still not solved.</em></strong></p>
+</section>
+<section id="changing-default-terminal">
+<h1>9. Changing Default Terminal<a class="headerlink" href="#changing-default-terminal" title="Link to this heading">¶</a></h1>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">update</span><span class="o">-</span><span class="n">alternatives</span> <span class="o">--</span><span class="n">config</span> <span class="n">x</span><span class="o">-</span><span class="n">terminal</span><span class="o">-</span><span class="n">emulator</span>
+</pre></div>
+</div>
+<p><em>Understanding Terminal and Bash</em></p>
+<p>Konsole = Terminal emulator (a graphical window that shows your shell).</p>
+<p>Bash = The shell (the actual command interpreter you’re typing into).</p>
+<p>Konsole usually runs Bash by default on Debian, unless you’ve changed it to zsh or fish</p>
+<p>To check, run the below command to see <em>Konsole</em> is running Bash as your shell.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gowtham@deb-gowarc:~$ echo $SHELL
+/bin/bash
+</pre></div>
+</div>
+</section>
+<section id="miniforge">
+<h1>10. Miniforge<a class="headerlink" href="#miniforge" title="Link to this heading">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Download conda-forge installer from the <a class="reference external" href="https://conda-forge.org/download/">website</a></p></li>
+<li><p>Go to the directory and run</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>bash Miniforge3-$(uname)-$(uname -m).sh
+</pre></div>
+</div>
+<p>Since <code class="docutils literal notranslate"><span class="pre">uname</span></code> outputs <code class="docutils literal notranslate"><span class="pre">Linux</span></code> and <code class="docutils literal notranslate"><span class="pre">uname</span> <span class="pre">-m</span></code> outputs <code class="docutils literal notranslate"><span class="pre">x86_64</span></code>, running the command <code class="docutils literal notranslate"><span class="pre">Miniforge3-$(uname)-$(uname</span> <span class="pre">-m).sh</span></code> is similar to mentioning the actual file name <code class="docutils literal notranslate"><span class="pre">Miniforge3-Linux-x86_64.sh</span></code>.</p>
+<ol class="arabic simple" start="3">
+<li><p>It will ask to read the license agreement and now it will show <code class="docutils literal notranslate"><span class="pre">end</span></code>. Now type <code class="docutils literal notranslate"><span class="pre">yes</span></code> and the installation will begin.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Miniforge3</span> <span class="n">will</span> <span class="n">now</span> <span class="n">be</span> <span class="n">installed</span> <span class="n">into</span> <span class="n">this</span> <span class="n">location</span><span class="p">:</span>
+<span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">gowtham</span><span class="o">/</span><span class="n">miniforge3</span>
+
+<span class="o">-</span> <span class="n">Press</span> <span class="n">ENTER</span> <span class="n">to</span> <span class="n">confirm</span> <span class="n">the</span> <span class="n">location</span>
+<span class="o">-</span> <span class="n">Press</span> <span class="n">CTRL</span><span class="o">-</span><span class="n">C</span> <span class="n">to</span> <span class="n">abort</span> <span class="n">the</span> <span class="n">installation</span>
+<span class="o">-</span> <span class="n">Or</span> <span class="n">specify</span> <span class="n">a</span> <span class="n">different</span> <span class="n">location</span> <span class="n">below</span>
+</pre></div>
+</div>
+<p>Press <code class="docutils literal notranslate"><span class="pre">ENTER</span></code></p>
+<ol class="arabic simple" start="4">
+<li><p>Once installation is done, it prompts</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Do you wish to update your shell profile to automatically initialize conda?
+This will activate conda on startup and change the command prompt when activated.
+If you&#39;d prefer that conda&#39;s base environment not be activated on startup,
+run the following command when conda is activated:
+
+conda config --set auto_activate_base false
+
+You can undo this by running `conda init --reverse $SHELL`? [yes|no]
+</pre></div>
+</div>
+<p>If <code class="docutils literal notranslate"><span class="pre">yes</span></code> - Adds Conda to your shell startup file. conda is ready every time.
+If <code class="docutils literal notranslate"><span class="pre">no</span></code> - You’ll have to manually source <code class="docutils literal notranslate"><span class="pre">~/miniforge3/bin/activate</span></code> each time.</p>
+<p>press <code class="docutils literal notranslate"><span class="pre">yes</span></code> in this case.</p>
+<ol class="arabic simple" start="5">
+<li><p>Successfully installed</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>no change     /home/gowtham/miniforge3/condabin/conda
+no change     /home/gowtham/miniforge3/bin/conda
+no change     /home/gowtham/miniforge3/bin/conda-env
+no change     /home/gowtham/miniforge3/bin/activate
+no change     /home/gowtham/miniforge3/bin/deactivate
+no change     /home/gowtham/miniforge3/etc/profile.d/conda.sh
+no change     /home/gowtham/miniforge3/etc/fish/conf.d/conda.fish
+no change     /home/gowtham/miniforge3/shell/condabin/Conda.psm1
+no change     /home/gowtham/miniforge3/shell/condabin/conda-hook.ps1
+no change     /home/gowtham/miniforge3/lib/python3.12/site-packages/xontrib/conda.xsh
+no change     /home/gowtham/miniforge3/etc/profile.d/conda.csh
+modified      /home/gowtham/.bashrc
+
+==&gt; For changes to take effect, close and re-open your current shell. &lt;==
+
+Running `shell init`, which:
+- modifies RC file: &quot;/home/gowtham/.bashrc&quot;
+- generates config for root prefix: &quot;/home/gowtham/miniforge3&quot;
+- sets mamba executable to: &quot;/home/gowtham/miniforge3/bin/mamba&quot;
+The following has been added in your &quot;/home/gowtham/.bashrc&quot; file
+
+# &gt;&gt;&gt; mamba initialize &gt;&gt;&gt;
+# !! Contents within this block are managed by &#39;mamba shell init&#39; !!
+export MAMBA_EXE=&#39;/home/gowtham/miniforge3/bin/mamba&#39;;
+export MAMBA_ROOT_PREFIX=&#39;/home/gowtham/miniforge3&#39;;
+__mamba_setup=&quot;$(&quot;$MAMBA_EXE&quot; shell hook --shell bash --root-prefix &quot;$MAMBA_ROOT_PREFIX&quot; 2&gt; /dev/null)&quot;
+if [ $? -eq 0 ]; then
+ eval &quot;$__mamba_setup&quot;
+else
+ alias mamba=&quot;$MAMBA_EXE&quot;  # Fallback on help from mamba activate
+fi
+unset __mamba_setup
+# &lt;&lt;&lt; mamba initialize &lt;&lt;&lt;
+
+Thank you for installing Miniforge3!
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>Close terminal window (Konsole) and open a new one. <em>conda env base</em> can be seen.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>(base) gowtham@deb-gowarc:~$ conda --version
+conda 25.3.0
+</pre></div>
+</div>
+<ol class="arabic simple" start="7">
+<li><p>To prevent the automatic activation of the conda base environment when you open a new terminal</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">config</span> <span class="o">--</span><span class="nb">set</span> <span class="n">auto_activate_base</span> <span class="n">false</span>
+</pre></div>
+</div>
+<p>Once again, reopen the terminal. Conda can still be accessed in Konsole but we need to activate the environment when needed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>gowtham@deb-gowarc:~$ conda --version
+conda 25.3.0
+gowtham@deb-gowarc:~$ conda activate base
+(base) gowtham@deb-gowarc:~$ conda deactivate
+gowtham@deb-gowarc:~$ conda env list
+
+# conda environments:
+#
+base                   /home/gowtham/miniforge3
+</pre></div>
+</div>
+</section>
+<section id="screenshot">
+<h1>11. Screenshot<a class="headerlink" href="#screenshot" title="Link to this heading">¶</a></h1>
+<p>To take a screenshot, install</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="n">install</span> <span class="n">gnome</span><span class="o">-</span><span class="n">screenshot</span>
+</pre></div>
+</div>
+<p>launch screenshot app and see the shortcuts.</p>
+</section>
+<section id="external-monitor">
+<h1>12. External Monitor<a class="headerlink" href="#external-monitor" title="Link to this heading">¶</a></h1>
+<p>You can preview the current setup by just running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrandr</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Set Kernel Parameter nvidia-drm.modeset=1
+Edit your GRUB configuration:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">nano</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">default</span><span class="o">/</span><span class="n">grub</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Append nvidia-drm.modeset=1 inside the quotes:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="o">=</span><span class="s2">&quot;quiet splash nvidia-drm.modeset=1&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Save and update GRUB:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">grub</span>
+</pre></div>
+</div>
+<p>Reboot after it.</p>
+<ol class="arabic simple" start="4">
+<li><p>The below will list available GPU output providers.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrandr</span> <span class="o">--</span><span class="n">listproviders</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>To place the monitor to the right of laptop screen.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrandr</span> <span class="o">--</span><span class="n">output</span> <span class="n">HDMI</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="o">--</span><span class="n">auto</span> <span class="o">--</span><span class="n">right</span><span class="o">-</span><span class="n">of</span> <span class="n">eDP</span>
+</pre></div>
+</div>
+<p>To duplicate,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrandr</span> <span class="o">--</span><span class="n">output</span> <span class="n">HDMI</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mi">0</span> <span class="o">--</span><span class="n">mode</span> <span class="mi">1920</span><span class="n">x1080</span> <span class="o">--</span><span class="n">same</span><span class="o">-</span><span class="k">as</span> <span class="n">eDP</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Debian Linux Docs</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Coding.html">1. VSCodium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Coding.html#docker-desktop">2. Docker Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Coding.html#resolving-docker-duplicate-installations">Resolving Docker duplicate installations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html">1. Spotify</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html#id1">2.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Customization.html">1. Fastfetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Customization.html#oh-my-zsh">2. Oh My Zsh</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Customization.html#thunderbird-html-signature">3. Thunderbird HTML Signature</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Easyroam config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#fixing-dvd-source">2. Fixing DVD Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#installing-thunderbird">3. Installing Thunderbird</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#fullscreen">4. Fullscreen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#copy-paste-terminal-commands">5. Copy &amp; Paste terminal commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#default-desktop-environment">6. Default Desktop Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#brave-browser">7. Brave Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#nvidia-driver">8. NVIDIA Driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#changing-default-terminal">9. Changing Default Terminal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#miniforge">10. Miniforge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#screenshot">11. Screenshot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#external-monitor">12. External Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Git.html">Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">1. Debian &amp; bootable drive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html#bios-uefi-configuration">2. BIOS/UEFI Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html#install-debian-12">3. Install Debian 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html#login-manager-selection">4. Login Manager Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html#switching-to-superuser">5. Switching to superuser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Mounting Network Drives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trixie.html#vpn">VPN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">De-encrypt a pdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tweaks.html#git">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html">1. MATLAB installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#globalprotect-vpn">2. GlobalProtect VPN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#kicad-debian-backports">3. KiCAD - Debian Backports</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Customization.html" title="previous chapter">1. Fastfetch</a></li>
+      <li>Next: <a href="Git.html" title="next chapter">Sphinx</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Gowtham Mahendran.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/pages/First-things-First.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

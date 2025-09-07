@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Fastfetch &#8212; Debian Linux Docs 1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css?v=27fed22d" />
+    <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. Easyroam config" href="First-things-First.html" />
+    <link rel="prev" title="1. Spotify" href="Common-Softwares.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="fastfetch">
+<h1>1. Fastfetch<a class="headerlink" href="#fastfetch" title="Link to this heading">¶</a></h1>
+<ol class="arabic simple">
+<li><p>Download fastfetch from the <a class="reference external" href="https://github.com/fastfetch-cli/fastfetch">Github</a> repositary</p></li>
+<li><p>Install the .deb file</p></li>
+<li><p>Go to terminal and run</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastfetch</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>To view specific linux logo, use</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastfetch</span> <span class="o">--</span><span class="n">logo</span> <span class="n">debian</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>To get all information</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastfetch</span> <span class="o">-</span><span class="n">c</span> <span class="nb">all</span><span class="o">.</span><span class="n">jsonc</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="6">
+<li><p>There are also modules to get specific information</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fastfetch</span> <span class="o">-</span><span class="n">s</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span> <span class="o">--</span><span class="nb">format</span> <span class="n">json</span>
+</pre></div>
+</div>
+<p>Replace ‘module’ with below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>1)  Battery       : Print battery capacity, status, etc
+2)  Bios          : Print information of 1st-stage bootloader (name, version, release date, etc)
+3)  Bluetooth     : List (connected) bluetooth devices
+4)  BluetoothRadio: List bluetooth radios width supported version and vendor
+5)  Board         : Print motherboard name and other info
+6)  Bootmgr       : Print information of 2nd-stage bootloader (name, firmware, etc)
+7)  Break         : Print a empty line
+8)  Brightness    : Print current brightness level of your monitors
+9)  Btrfs         : Print Linux BTRFS volumes
+10) Camera        : Print available cameras
+11) Chassis       : Print chassis type (desktop, laptop, etc)
+12) Command       : Run custom shell scripts
+13) Colors        : Print some colored blocks
+14) CPU           : Print CPU name, frequency, etc
+15) CPUCache      : Print CPU cache sizes
+16) CPUUsage      : Print CPU usage. Costs some time to collect data
+17) Cursor        : Print cursor style name
+18) Custom        : Print a custom string, with or without key
+19) DateTime      : Print current date and time
+20) DE            : Print desktop environment name
+21) Display       : Print resolutions, refresh rates, etc
+22) Disk          : Print partitions, space usage, file system, etc
+23) DiskIO        : Print physical disk I/O throughput
+24) DNS           : Print configured DNS servers
+25) Editor        : Print information of the default editor ($VISUAL or $EDITOR)
+26) Font          : Print system font names
+27) Gamepad       : List (connected) gamepads
+28) GPU           : Print GPU names, graphic memory size, type, etc
+29) Host          : Print product name of your computer
+30) Icons         : Print icon style name
+31) InitSystem    : Print init system (pid 1) name and version
+32) Kernel        : Print system kernel version
+33) Keyboard      : List (connected) keyboards
+34) LM            : Print login manager (desktop manager) name and version
+35) Loadavg       : Print system load averages
+36) Locale        : Print system locale name
+37) LocalIp       : List local IP addresses (v4 or v6), MAC addresses, etc
+38) Media         : Print playing song name
+39) Memory        : Print system memory usage info
+40) Monitor       : Alias of Display module
+41) Mouse         : List connected mouses
+42) NetIO         : Print network I/O throughput
+43) OpenCL        : Print highest OpenCL version supported by the GPU
+44) OpenGL        : Print highest OpenGL version supported by the GPU
+45) OS            : Print operating system name and version
+46) Packages      : List installed package managers and count of installed packages
+47) PhysicalDisk  : Print physical disk information
+48) PhysicalMemory: Print system physical memory devices
+49) Player        : Print music player name
+50) PowerAdapter  : Print power adapter name and charging watts
+51) Processes     : Print number of running processes
+52) PublicIp      : Print your public IP address, etc
+53) Separator     : Print a separator line
+54) Shell         : Print current shell name and version
+55) Sound         : Print sound devices, volume, etc
+56) Swap          : Print swap (paging file) space usage
+57) Terminal      : Print current terminal name and version
+58) TerminalFont  : Print font name and size used by current terminal
+59) TerminalSize  : Print current terminal size
+60) TerminalTheme : Print current terminal theme (foreground and background colors)
+61) Title         : Print title, which contains your user name, hostname
+62) Theme         : Print current theme of desktop environment
+63) TPM           : Print info of Trusted Platform Module (TPM) Security Device
+64) Uptime        : Print how long system has been running
+65) Users         : Print users currently logged in
+66) Version       : Print Fastfetch version
+67) Vulkan        : Print highest Vulkan version supported by the GPU
+68) Wallpaper     : Print image file path of current wallpaper
+69) Weather       : Print weather information
+70) WM            : Print window manager name and version
+71) Wifi          : Print connected Wi-Fi info (SSID, connection and security protocol)
+72) WMTheme       : Print current theme of window manager
+73) Zpool         : Print ZFS storage pools
+</pre></div>
+</div>
+<p>To add fastfetch to display when opening a new terminal, add it to the bashrc file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">nano</span></code> launches the Nano text editor (a simple terminal-based text editor)
+<code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code> opens the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file located in your home directory. This file defines how your terminal behaves each time you open it. It runs commands, sets aliases, environment variables, or custom startup banners.</p>
+<p>Add <code class="docutils literal notranslate"><span class="pre">fastfetch</span></code> at the end.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+     _,met$$$$$gg.          gowtham@deb-gowarc
+  ,g$$$$$$$$$$$$$$$P.       ------------------
+,g$$P&quot;&quot;       &quot;&quot;&quot;Y$$.&quot;.     OS: Debian GNU/Linux 12 (bookworm) x86_64
+,$$P&#39;              `$$$.     Host: HP Pavilion Gaming Laptop 15-ec2xxx
+&#39;,$$P       ,ggs.     `$$b:    Kernel: Linux 6.1.0-37-amd64
+`d$$&#39;     ,$P&quot;&#39;   .    $$$     Uptime: 16 mins
+$$P      d$&#39;     ,    $$P     Packages: 2264 (dpkg)
+$$:      $$.   -    ,d$$&#39;     Shell: bash 5.2.15
+$$;      Y$b._   _,d$P&#39;       Display (LGD05FE): 1920x1080 @ 144 Hz in 16&quot;
+Y$$.    `.`&quot;Y$$$$P&quot;&#39;          DE: KDE Plasma 5.27.5
+`$$b      &quot;-.__               WM: KWin (X11)
+`Y$$b                        WM Theme: Breeze
+`Y$$.                       Theme: Breeze (Light) [Qt], Breeze [GTK2/3]
+  `$$b.                     Icons: breeze [Qt], breeze [GTK2/3/4]
+    `Y$$b.                  Font: Noto Sans (10pt) [Qt], Noto Sans (10pt) [GTK2/3/4]
+      `&quot;Y$b._               Cursor: breeze (24px)
+          `&quot;&quot;&quot;&quot;             Terminal: konsole 22.12.3
+                            CPU: AMD Ryzen 7 5800H (16) @ 3.20 GHz
+                            GPU 1: NVIDIA GeForce RTX 3050 Mobile [Discrete]
+                            GPU 2: AMD Radeon Vega Series / Radeon Vega Mobile Series [Integrated]
+                            Memory: 2.59 GiB / 14.97 GiB (17%)
+                            Swap: 0 B / 977.00 MiB (0%)
+                            Disk (/): 9.52 GiB / 27.33 GiB (35%) - ext4
+                            Disk (/home): 14.93 GiB / 439.45 GiB (3%) - ext4
+                            Local IP (wlo1): 192.168.0.110/24
+                            Battery (Primary): 38% [Discharging]
+                            Locale: en_US.UTF-8
+
+gowtham@deb-gowarc:~$ 
+
+</pre></div>
+</div>
+</section>
+<section id="oh-my-zsh">
+<h1>2. Oh My Zsh<a class="headerlink" href="#oh-my-zsh" title="Link to this heading">¶</a></h1>
+<p>In order for Oh My Zsh to work, check if Zsh is installed using <code class="docutils literal notranslate"><span class="pre">zsh</span> <span class="pre">--version</span></code>. If not,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">zsh</span>
+</pre></div>
+</div>
+<p>Follow the github <a class="reference external" href="https://github.com/ohmyzsh/ohmyzsh">repo</a> for installing <code class="docutils literal notranslate"><span class="pre">ohmyzsh</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="o">-</span><span class="n">c</span> <span class="s2">&quot;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&quot;</span>
+</pre></div>
+</div>
+<p>After installation, create a new profile on the KDE Konsole and add zsh as default shell by adding <code class="docutils literal notranslate"><span class="pre">/bin/zsh</span></code> as the command in profile settings.</p>
+<section id="themes">
+<h2>Themes<a class="headerlink" href="#themes" title="Link to this heading">¶</a></h2>
+<p>To change the theme, edit the theme section in the <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> file using,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nano</span> <span class="o">~/.</span><span class="n">zshrc</span>
+</pre></div>
+</div>
+<p>A complete list of themes is <a class="reference external" href="https://github.com/ohmyzsh/ohmyzsh/wiki/Themes">here</a>. I personally like <code class="docutils literal notranslate"><span class="pre">Agnoster</span></code></p>
+<p>Since, the default terminal is now changed to zsh, we can add fastfetch command at the end of the script to show the fastfetch details.</p>
+<p>When you want to change directory, it isn’t necessary to enter the <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">command</span></code>; <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">Desktop</span></code> just becomes <code class="docutils literal notranslate"><span class="pre">Desktop</span></code>. And that works with paths, too: you can enter <code class="docutils literal notranslate"><span class="pre">/home/gowtham/Desktop</span></code> and end up right where you wanted to go.
+Typing <code class="docutils literal notranslate"><span class="pre">...</span></code> will move you up two directories. The <code class="docutils literal notranslate"><span class="pre">first</span> <span class="pre">two</span> <span class="pre">dots</span></code> will take <code class="docutils literal notranslate"><span class="pre">one</span> <span class="pre">dir</span></code> backwards. the rest <code class="docutils literal notranslate"><span class="pre">single</span> <span class="pre">dots</span></code> takes <code class="docutils literal notranslate"><span class="pre">one</span> <span class="pre">backwards</span></code>.</p>
+<p>Oh My Zsh also supports dynamic path completion, so typing <code class="docutils literal notranslate"><span class="pre">/h/g/De</span></code> and pressing <code class="docutils literal notranslate"><span class="pre">Tab</span></code> will expand the path to <code class="docutils literal notranslate"><span class="pre">/home/gowtham/Desktop</span></code>.</p>
+</section>
+<section id="plugins-make-life-easier">
+<h2>Plugins make life easier<a class="headerlink" href="#plugins-make-life-easier" title="Link to this heading">¶</a></h2>
+<p><strong>docker-compose</strong></p>
+<p>Add the needed <a class="reference external" href="https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins">plugin</a> to the <code class="docutils literal notranslate"><span class="pre">.zshrc</span></code> file. For example, <code class="docutils literal notranslate"><span class="pre">plugins=(git</span> <span class="pre">docker-compose)</span></code>. <a class="reference external" href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker-compose">Here</a> is a list of all the shortcut commands for docker-composer.</p>
+<p>After adding this, restart the terminal or use <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">~/.zshrc</span></code>.</p>
+<p>Now, instead of using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">compose</span> <span class="pre">up</span></code>, we can use <code class="docutils literal notranslate"><span class="pre">dcup</span></code>.</p>
+<p><strong>web-search</strong></p>
+<p>you’re in the terminal and you need to google something.</p>
+<p>No need to switch over to your browser, just run the search from your terminal with the <a class="reference external" href="https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/web-search">Web Search</a> plugin.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brs</span> <span class="n">uni</span> <span class="n">oldenburg</span>
+</pre></div>
+</div>
+<p>To open raw urls, use</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">open</span> <span class="n">amazon</span><span class="o">.</span><span class="n">de</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="thunderbird-html-signature">
+<h1>3. Thunderbird HTML Signature<a class="headerlink" href="#thunderbird-html-signature" title="Link to this heading">¶</a></h1>
+<p>Here is a template for custom minimalistic signature</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;font-family: Arial, sans-serif; font-size: 12px; color: #333; line-height: 1.4;&quot;</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">p</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;margin: 0; font-weight: bold;&quot;</span><span class="o">&gt;</span><span class="n">Best</span> <span class="n">Regards</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">p</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;margin: 0; font-weight: bold;&quot;</span><span class="o">&gt;</span><span class="n">Gowtham</span> <span class="n">Mahendran</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">p</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;margin: 0;&quot;</span><span class="o">&gt;</span><span class="n">MSc</span> <span class="n">Sustainable</span> <span class="n">Renewable</span> <span class="n">Energy</span> <span class="n">Technologies</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">p</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;margin: 0;&quot;</span><span class="o">&gt;</span><span class="n">University</span> <span class="n">of</span> <span class="n">Oldenburg</span><span class="p">,</span> <span class="n">Germany</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="n">p</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;margin: 0;&quot;</span><span class="o">&gt;&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://linkedin.com/in/gowtham-mahendran&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;color: #1a73e8; text-decoration: none;&quot;</span><span class="o">&gt;</span><span class="n">LinkedIn</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span> <span class="o">|</span> <span class="o">&lt;</span><span class="n">a</span> <span class="n">href</span><span class="o">=</span><span class="s2">&quot;https://github.com/Gowtham-Mahendran?tab=repositories&quot;</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;color: #1a73e8; text-decoration: none;&quot;</span><span class="o">&gt;</span><span class="n">GitHub</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>To fix text while composing a mail, change the settings like below</p>
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/d86b722d-13a1-4376-97ee-1385e041beba" />
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Debian Linux Docs</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Coding.html">1. VSCodium</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Coding.html#docker-desktop">2. Docker Desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Coding.html#resolving-docker-duplicate-installations">Resolving Docker duplicate installations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html">1. Spotify</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Common-Softwares.html#id1">2.</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">1. Fastfetch</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#oh-my-zsh">2. Oh My Zsh</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#themes">Themes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plugins-make-life-easier">Plugins make life easier</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#thunderbird-html-signature">3. Thunderbird HTML Signature</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html">1. Easyroam config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#fixing-dvd-source">2. Fixing DVD Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#installing-thunderbird">3. Installing Thunderbird</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#fullscreen">4. Fullscreen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#copy-paste-terminal-commands">5. Copy &amp; Paste terminal commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#default-desktop-environment">6. Default Desktop Environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#brave-browser">7. Brave Browser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#nvidia-driver">8. NVIDIA Driver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#changing-default-terminal">9. Changing Default Terminal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#miniforge">10. Miniforge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#screenshot">11. Screenshot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="First-things-First.html#external-monitor">12. External Monitor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Git.html">Sphinx</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html">1. Debian &amp; bootable drive</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html#bios-uefi-configuration">2. BIOS/UEFI Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html#install-debian-12">3. Install Debian 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html#login-manager-selection">4. Login Manager Selection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Home.html#switching-to-superuser">5. Switching to superuser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Network-drives.html">Mounting Network Drives</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trixie.html">Docker</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trixie.html#vpn">VPN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tweaks.html">De-encrypt a pdf</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tweaks.html#git">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html">1. MATLAB installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#globalprotect-vpn">2. GlobalProtect VPN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="User-specific-softwares.html#kicad-debian-backports">3. KiCAD - Debian Backports</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Common-Softwares.html" title="previous chapter">1. Spotify</a></li>
+      <li>Next: <a href="First-things-First.html" title="next chapter">1. Easyroam config</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Gowtham Mahendran.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="../_sources/pages/Customization.md.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
