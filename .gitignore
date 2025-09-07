@@ -1,4 +1,6 @@
 # Python / Virtualenv
 .venv/
 
+sphinx/docs/build/html
+sphinx/docs/build/doctrees
 sphinx/docs/build/
